@@ -1,6 +1,7 @@
 <?php
 namespace CoinbaseCommerce\Resources;
 
+use ArrayIterator;
 use CoinbaseCommerce\ApiClient;
 use CoinbaseCommerce\ApiResponse;
 use CoinbaseCommerce\Util;
@@ -141,32 +142,32 @@ class ApiResource extends \ArrayObject
         return $this->__get($key);
     }
 
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value) : void
     {
         null === $key ? array_push($this->attributes, $value) : $this->attributes[$key] = $value;
     }
 
-    public function count()
+    public function count() : int
     {
         return count($this->attributes);
     }
 
-    public function asort(int $flags = SORT_REGULAR)
+    public function asort(int $flags = SORT_REGULAR) : bool
     {
-        asort($this->attributes, $flags);
+        return asort($this->attributes, $flags);
     }
 
-    public function ksort(int $flags = SORT_REGULAR)
+    public function ksort(int $flags = SORT_REGULAR) : bool
     {
-        ksort($this->attributes, $flags);
+        return ksort($this->attributes, $flags);
     }
 
-    public function offsetUnset($key)
+    public function offsetUnset($key) : void
     {
         unset($this->attributes[$key]);
     }
 
-    public function getIterator()
+    public function getIterator() : ArrayIterator
     {
         return new \ArrayIterator($this->attributes);
     }

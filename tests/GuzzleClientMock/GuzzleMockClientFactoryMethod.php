@@ -7,10 +7,8 @@ class GuzzleMockClientFactoryMethod
     {
         if (class_exists('GuzzleHttp\Handler\MockHandler')) {
             return new NewGuzzleHelperHelper();
-        } elseif (class_exists('GuzzleHttp\Subscriber\Mock')) {
-            return new OldGuzzleHelperHelper();
         } else {
-            throw new \Exception('Not supported Guzzle version.');
+            throw new \Exception('Unsupported Guzzle version.');
         }
     }
 }

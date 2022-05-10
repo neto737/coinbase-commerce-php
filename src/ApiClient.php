@@ -6,10 +6,10 @@ use GuzzleHttp\Client;
 
 class ApiClient
 {
-    const API_KEY_PARAM = 'apiKey';
-    const BASE_API_URL_PARAM = 'baseApiUrl';
-    const API_VERSION_PARAM = 'apiVersion';
-    const TIMEOUT_PARAM = 'timeout';
+    private const API_KEY_PARAM = 'apiKey';
+    private const BASE_API_URL_PARAM = 'baseApiUrl';
+    private const API_VERSION_PARAM = 'apiVersion';
+    private const TIMEOUT_PARAM = 'timeout';
 
     /**
      * @var array

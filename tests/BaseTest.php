@@ -16,7 +16,7 @@ class BaseTest extends TestCase
 
     protected $logger;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->initMockClient();
 
@@ -31,7 +31,7 @@ class BaseTest extends TestCase
         $this->apiClient = $this->getMockBuilder(ApiClient::getClassName())
             ->disableOriginalConstructor()
             ->disableOriginalClone()
-            ->setMethods(['getHttpClient'])
+            ->onlyMethods(['getHttpClient', 'init', 'setLogger'])
             ->getMock();
 
         $this->apiClient
@@ -39,7 +39,7 @@ class BaseTest extends TestCase
             ->willReturn($client);
 
         $this->logger = $this->getMockBuilder('LoggerClass')
-            ->setMethods(['warning'])
+            ->onlyMethods(['warning'])
             ->getMock('LoggerClass');
 
         $this->logger
