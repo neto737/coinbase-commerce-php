@@ -30,6 +30,6 @@ trait DeleteMethodTrait
         $client = static::getClient();
         $client->delete($path, $headers);
 
-        return new static;
+        return new static();
     }
 }
