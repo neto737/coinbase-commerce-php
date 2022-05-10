@@ -2,8 +2,7 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
-    ->exclude('vendor')
-    ->notPath('lib/system/api');
+    ->exclude('vendor');
 
 return (new PhpCsFixer\Config())
     ->setRiskyAllowed(true)
