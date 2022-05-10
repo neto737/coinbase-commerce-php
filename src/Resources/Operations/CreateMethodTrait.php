@@ -1,4 +1,5 @@
 <?php
+
 namespace CoinbaseCommerce\Resources\Operations;
 
 use CoinbaseCommerce\Util;
@@ -19,6 +20,7 @@ trait CreateMethodTrait
         $client = static::getClient();
         $path = static::getResourcePath();
         $response = $client->post($path, $body, $headers);
+
         return Util::convertToApiObject($response);
     }
 }

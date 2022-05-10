@@ -1,4 +1,5 @@
 <?php
+
 namespace CoinbaseCommerce\Tests;
 
 use CoinbaseCommerce\Resources\ApiResource;
@@ -6,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class ApiResourceTest extends TestCase
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
         $this->apiResourceStub = $this->getMockForAbstractClass(ApiResource::getClassName());
@@ -17,6 +18,7 @@ class ApiResourceTest extends TestCase
         $class = new \ReflectionClass($obj);
         $method = $class->getMethod($name);
         $method->setAccessible(true);
+
         return $method->invokeArgs($obj, $args);
     }
 
@@ -25,15 +27,15 @@ class ApiResourceTest extends TestCase
         $data = [
             'name' => 'Test Name',
             'meta' => [
-                'option1' => 'value1'
-            ]
+                'option1' => 'value1',
+            ],
         ];
 
         $this->callMethod(
             $this->apiResourceStub,
             'refreshFrom',
             [
-                $data
+                $data,
             ]
         );
 
@@ -56,9 +58,9 @@ class ApiResourceTest extends TestCase
                 [
                     'name' => 'Test Name',
                     'meta' => [
-                        'option1' => 'value1'
-                    ]
-                ]
+                        'option1' => 'value1',
+                    ],
+                ],
             ]
         );
 
@@ -79,9 +81,9 @@ class ApiResourceTest extends TestCase
                 [
                     'name' => 'Test Name',
                     'meta' => [
-                        'option1' => 'value1'
-                    ]
-                ]
+                        'option1' => 'value1',
+                    ],
+                ],
             ]
         );
 
@@ -100,9 +102,9 @@ class ApiResourceTest extends TestCase
                     'description' => 'Test Description',
                     'meta' => [
                         'option1' => 'value1',
-                        'option2' => 'value2'
-                    ]
-                ]
+                        'option2' => 'value2',
+                    ],
+                ],
             ]
         );
 
@@ -127,9 +129,9 @@ class ApiResourceTest extends TestCase
                     'description' => 'Test Description',
                     'meta' => [
                         'option1' => 'value1',
-                        'option2' => 'value2'
-                    ]
-                ]
+                        'option2' => 'value2',
+                    ],
+                ],
             ]
         );
         $this->callMethod($this->apiResourceStub, 'clearAttributes', []);

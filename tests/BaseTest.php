@@ -1,9 +1,10 @@
 <?php
+
 namespace CoinbaseCommerce\Tests;
 
+use CoinbaseCommerce\ApiClient;
 use CoinbaseCommerce\Tests\GuzzleClientMock\GuzzleMockClientFactoryMethod;
 use PHPUnit\Framework\TestCase;
-use CoinbaseCommerce\ApiClient;
 
 class BaseTest extends TestCase
 {
@@ -16,7 +17,7 @@ class BaseTest extends TestCase
 
     protected $logger;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         $this->initMockClient();
 
@@ -67,16 +68,15 @@ class BaseTest extends TestCase
      */
     public function parseJsonFile($file)
     {
-        $filePath = __DIR__ . DIRECTORY_SEPARATOR . 'Fixtures' . DIRECTORY_SEPARATOR . $file;
+        $filePath = __DIR__ . \DIRECTORY_SEPARATOR . 'Fixtures' . \DIRECTORY_SEPARATOR . $file;
 
-
-        if (!file_exists($filePath)) {
+        if (!\file_exists($filePath)) {
             throw new \Exception('File not exists');
         }
 
-        $data = file_get_contents($filePath);
+        $data = \file_get_contents($filePath);
 
-        return json_decode($data, true);
+        return \json_decode($data, true);
     }
 
     public function assertRequested($method, $path, $params = '')

@@ -1,4 +1,5 @@
 <?php
+
 namespace CoinbaseCommerce\Resources\Operations;
 
 trait SaveMethodTrait
@@ -7,7 +8,7 @@ trait SaveMethodTrait
     {
         $id = $this->getPrimaryKeyValue();
 
-        if (\is_scalar($id) && !method_exists($this, 'update')) {
+        if (\is_scalar($id) && !\method_exists($this, 'update')) {
             throw new \Exception('Update is not allowed');
         }
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace CoinbaseCommerce;
 
 use CoinbaseCommerce\Resources\Charge;
@@ -15,13 +16,13 @@ class Util
     public static function convertToApiObject($response)
     {
         if ($response instanceof ApiResponse) {
-            $response = isset($response->bodyArray['data']) ? $response->bodyArray['data'] : null;
+            $response = $response->bodyArray['data'] ?? null;
         }
 
-        if (is_array($response)) {
-            array_walk(
+        if (\is_array($response)) {
+            \array_walk(
                 $response,
-                function (&$item) {
+                static function (&$item) {
                     $item = self::convertToApiObject($item);
                 }
             );
@@ -40,11 +41,11 @@ class Util
             self::$mapResourceByName = [
                 'checkout' => Checkout::getClassName(),
                 'charge' => Charge::getClassName(),
-                'event' => Event::getClassName()
+                'event' => Event::getClassName(),
             ];
         }
 
-        return isset(self::$mapResourceByName[$name]) ? self::$mapResourceByName[$name] : null;
+        return self::$mapResourceByName[$name] ?? null;
     }
 
     /**
@@ -52,15 +53,15 @@ class Util
      */
     public static function joinPath()
     {
-        $arguments = func_get_args();
-        array_walk(
+        $arguments = \func_get_args();
+        \array_walk(
             $arguments,
-            function (&$item) {
-                $item = trim($item, '/');
+            static function (&$item) {
+                $item = \trim($item, '/');
             }
         );
 
-        return implode('/', $arguments);
+        return \implode('/', $arguments);
     }
 
     /**
@@ -70,12 +71,12 @@ class Util
      */
     public static function equal($prop1, $prop2)
     {
-        if (is_array($prop1)) {
+        if (\is_array($prop1)) {
             foreach ($prop1 as $key => $value) {
-                if (!is_array($prop2) || !array_key_exists($key, $prop2)) {
+                if (!\is_array($prop2) || !\array_key_exists($key, $prop2)) {
                     return false;
                 }
-                if (is_array($value)) {
+                if (\is_array($value)) {
                     if (!self::equal($value, $prop2[$key])) {
                         return false;
                     }
@@ -96,19 +97,20 @@ class Util
      */
     public static function hashEqual($str1, $str2)
     {
-        if (function_exists('hash_equals')) {
+        if (\function_exists('hash_equals')) {
             return \hash_equals($str1, $str2);
         }
 
-        if (strlen($str1) != strlen($str2)) {
+        if (\strlen($str1) != \strlen($str2)) {
             return false;
         } else {
             $res = $str1 ^ $str2;
             $ret = 0;
 
-            for ($i = strlen($res) - 1; $i >= 0; $i--) {
-                $ret |= ord($res[$i]);
+            for ($i = \strlen($res) - 1; $i >= 0; $i--) {
+                $ret |= \ord($res[$i]);
             }
+
             return !$ret;
         }
     }

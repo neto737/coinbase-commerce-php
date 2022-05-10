@@ -1,13 +1,14 @@
 <?php
+
 namespace CoinbaseCommerce\Tests;
 
-use PHPUnit\Framework\TestCase;
-use CoinbaseCommerce\Webhook;
 use CoinbaseCommerce\Resources\Event;
+use CoinbaseCommerce\Webhook;
+use PHPUnit\Framework\TestCase;
 
 class WebhookTest extends TestCase
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
     }

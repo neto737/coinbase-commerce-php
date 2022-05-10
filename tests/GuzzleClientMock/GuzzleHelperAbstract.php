@@ -1,4 +1,5 @@
 <?php
+
 namespace CoinbaseCommerce\Tests\GuzzleClientMock;
 
 abstract class GuzzleHelperAbstract

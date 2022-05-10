@@ -1,4 +1,5 @@
 <?php
+
 namespace CoinbaseCommerce;
 
 use ArrayIterator;
@@ -6,7 +7,9 @@ use ArrayIterator;
 class ApiResourceList extends \ArrayObject
 {
     private const CURSOR_PARAM = 'cursor_range';
+
     private const PREV_CURSOR = 'ending_before';
+
     private const NEXT_CURSOR = 'starting_after';
 
     private static $apiClient;
@@ -141,12 +144,12 @@ class ApiResourceList extends \ArrayObject
         $response = $client->get($path, $params, $this->headers);
         $responseData = $response->bodyArray;
 
-        $this->pagination = isset($responseData['pagination']) ? $responseData['pagination'] : [];
+        $this->pagination = $responseData['pagination'] ?? [];
         $this->items = [];
 
         if (isset($responseData['data'])) {
-            $this->items = array_map(
-                function ($item) {
+            $this->items = \array_map(
+                static function ($item) {
                     return Util::convertToApiObject($item);
                 },
                 $responseData['data']
@@ -159,14 +162,14 @@ class ApiResourceList extends \ArrayObject
         return $this->items[$key];
     }
 
-    public function offsetSet($key, $value) : void
+    public function offsetSet($key, $value): void
     {
-        null === $key ? array_push($this->items, $value) : $this->items[$key] = $value;
+        null === $key ? \array_push($this->items, $value) : $this->items[$key] = $value;
     }
 
-    public function count() : int
+    public function count(): int
     {
-        return count($this->items);
+        return \count($this->items);
     }
 
     public function countAll()
@@ -176,22 +179,22 @@ class ApiResourceList extends \ArrayObject
         }
     }
 
-    public function asort(int $flags = SORT_REGULAR) : bool
+    public function asort(int $flags = \SORT_REGULAR): bool
     {
-        return asort($this->items, $flags);
+        return \asort($this->items, $flags);
     }
 
-    public function ksort(int $flags = SORT_REGULAR) : bool
+    public function ksort(int $flags = \SORT_REGULAR): bool
     {
-        return ksort($this->items, $flags);
+        return \ksort($this->items, $flags);
     }
 
-    public function offsetUnset($key) : void
+    public function offsetUnset($key): void
     {
         unset($this->items[$key]);
     }
 
-    public function getIterator() : ArrayIterator
+    public function getIterator(): ArrayIterator
     {
         return new \ArrayIterator($this->items);
     }
@@ -201,6 +204,7 @@ class ApiResourceList extends \ArrayObject
         if (self::$apiClient) {
             return self::$apiClient;
         }
+
         return ApiClient::getInstance();
     }
 
@@ -211,6 +215,6 @@ class ApiResourceList extends \ArrayObject
 
     public static function getClassName()
     {
-        return get_called_class();
+        return static::class;
     }
 }

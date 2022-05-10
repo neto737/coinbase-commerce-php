@@ -1,4 +1,5 @@
 <?php
+
 namespace CoinbaseCommerce;
 
 use CoinbaseCommerce\Exceptions\InvalidResponseException;
@@ -13,7 +14,7 @@ class Webhook
 
         $data = \json_decode($payload, true);
 
-        if (json_last_error()) {
+        if (\json_last_error()) {
             throw new InvalidResponseException('Invalid payload provided. No JSON object could be decoded.', $payload);
         }
 

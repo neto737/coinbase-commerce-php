@@ -3,14 +3,12 @@
 namespace CoinbaseCommerce\Tests\Resources;
 
 use CoinbaseCommerce\ApiResourceList;
-use CoinbaseCommerce\Resources\Charge;
 use CoinbaseCommerce\Resources\Checkout;
-use CoinbaseCommerce\Resources\Event;
 use CoinbaseCommerce\Tests\BaseTest;
 
 class CheckoutTest extends BaseTest
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
         Checkout::setClient($this->apiClient);
@@ -55,7 +53,7 @@ class CheckoutTest extends BaseTest
         $this->appendRequest(200, $this->parseJsonFile('checkout.json'));
         $data = [
             'name' => 'Test Name',
-            'description' => 'Test description'
+            'description' => 'Test description',
         ];
         $checkoutObj = new Checkout($data);
         $checkoutObj->insert();
@@ -70,7 +68,7 @@ class CheckoutTest extends BaseTest
         $checkoutObj = new Checkout(
             [
                 'name' => 'Test Name',
-                'description' => 'Test description'
+                'description' => 'Test description',
             ]
         );
         $checkoutObj->save();
@@ -86,7 +84,7 @@ class CheckoutTest extends BaseTest
         $chargeObj = Checkout::create(
             [
                 'name' => 'Test Name',
-                'description' => 'Test description'
+                'description' => 'Test description',
             ]
         );
 
@@ -103,7 +101,7 @@ class CheckoutTest extends BaseTest
             [
                 'id' => $id,
                 'name' => 'Test Name',
-                'description' => 'Test description'
+                'description' => 'Test description',
             ]
         );
         $checkoutObj->update();
@@ -119,7 +117,7 @@ class CheckoutTest extends BaseTest
         $id = '488fcbd5-eb82-42dc-8a2b-10fdf70e0bfe';
         $data = [
             'name' => 'Test Name',
-            'description' => 'Test description'
+            'description' => 'Test description',
         ];
 
         $checkoutObj = Checkout::updateById($id, $data);
@@ -137,7 +135,7 @@ class CheckoutTest extends BaseTest
             [
                 'id' => $id,
                 'name' => 'Test Name',
-                'description' => 'Test Description'
+                'description' => 'Test Description',
             ]
         );
         $checkoutObj->save();

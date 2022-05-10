@@ -1,14 +1,18 @@
 <?php
+
 namespace CoinbaseCommerce;
 
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class ApiClient
 {
     private const API_KEY_PARAM = 'apiKey';
+
     private const BASE_API_URL_PARAM = 'baseApiUrl';
+
     private const API_VERSION_PARAM = 'apiVersion';
+
     private const TIMEOUT_PARAM = 'timeout';
 
     /**
@@ -18,7 +22,7 @@ class ApiClient
         self::API_VERSION_PARAM => null,
         self::BASE_API_URL_PARAM => 'https://api.commerce.coinbase.com/',
         self::API_VERSION_PARAM => '2018-03-22',
-        self::TIMEOUT_PARAM => 3
+        self::TIMEOUT_PARAM => 3,
     ];
 
     /**
@@ -44,7 +48,7 @@ class ApiClient
     /**
      * @var boolean
      */
-    private $verifySSL = true ;
+    private $verifySSL = true;
 
     /**
      * ApiClient constructor.
@@ -97,7 +101,7 @@ class ApiClient
      */
     private function getParam($key)
     {
-        if (array_key_exists($key, $this->params)) {
+        if (\array_key_exists($key, $this->params)) {
             return $this->params[$key];
         }
     }
@@ -110,6 +114,7 @@ class ApiClient
     private function setParam($key, $value)
     {
         $this->params[$key] = $value;
+
         return $this;
     }
 
@@ -125,6 +130,7 @@ class ApiClient
         }
 
         $this->setParam(self::API_KEY_PARAM, $value);
+
         return $this;
     }
 
@@ -143,7 +149,7 @@ class ApiClient
     public function setBaseUrl($value)
     {
         if (!empty($value) && \is_string($value)) {
-            if (substr($value, -1) !== '/') {
+            if (\substr($value, -1) !== '/') {
                 $value .= '/';
             }
 
@@ -212,19 +218,19 @@ class ApiClient
     private function generateRequestOptions($query = [], $body = [], $headers = [])
     {
         return $options = [
-            'headers' => array_merge(
+            'headers' => \array_merge(
                 [
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
                     'User-Agent' => 'Coinbase ',
                     'X-CC-Api-Key' => $this->getParam('apiKey'),
-                    'X-CC-Version' => $this->getParam('apiVersion')
+                    'X-CC-Version' => $this->getParam('apiVersion'),
                 ],
                 $headers
             ),
             'query' => $query,
             'json' => $body,
-            'timeout' => $this->getParam('timeout')
+            'timeout' => $this->getParam('timeout'),
         ];
     }
 
@@ -240,7 +246,7 @@ class ApiClient
             $path = Util::joinPath($this->getParam('baseApiUrl'), $path);
             $client = $this->getHttpClient();
 
-            if (method_exists($client, 'createRequest')) {
+            if (\method_exists($client, 'createRequest')) {
                 $request = $client->createRequest($method, $path, $options);
                 $response = $client->send($request);
             } else {
@@ -282,6 +288,7 @@ class ApiClient
     public function get($path, $queryParams = [], $headers = [])
     {
         $options = $this->generateRequestOptions($queryParams, $headers);
+
         return $this->makeRequest('GET', $path, $options);
     }
 
@@ -294,6 +301,7 @@ class ApiClient
     public function post($path, $body, $headers)
     {
         $options = $this->generateRequestOptions([], $body, $headers = []);
+
         return $this->makeRequest('POST', $path, $options);
     }
 
@@ -305,6 +313,7 @@ class ApiClient
     public function put($path, $body, $headers)
     {
         $options = $this->generateRequestOptions([], $body, $headers = []);
+
         return $this->makeRequest('PUT', $path, $options);
     }
 
@@ -316,6 +325,7 @@ class ApiClient
     public function delete($path, $headers = [])
     {
         $options = $this->generateRequestOptions([], [], $headers);
+
         return $this->makeRequest('DELETE', $path, $options);
     }
 
@@ -351,20 +361,20 @@ class ApiClient
         }
 
         foreach ($data['warnings'] as $warning) {
-            $this->logger->warning(is_array($warning) ? implode(',', $warning) : $warning);
+            $this->logger->warning(\is_array($warning) ? \implode(',', $warning) : $warning);
         }
     }
 
     public static function getClassName()
     {
-        return get_called_class();
+        return static::class;
     }
 
     public function verifySsl($verify)
     {
-        if (!is_bool($verify)) {
+        if (!\is_bool($verify)) {
             return;
         }
-        $this->verifySSL = $verify ;
+        $this->verifySSL = $verify;
     }
 }

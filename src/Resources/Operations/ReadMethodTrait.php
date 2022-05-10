@@ -1,8 +1,9 @@
 <?php
+
 namespace CoinbaseCommerce\Resources\Operations;
 
-use CoinbaseCommerce\Util;
 use CoinbaseCommerce\ApiResourceList;
+use CoinbaseCommerce\Util;
 
 trait ReadMethodTrait
 {
@@ -40,12 +41,12 @@ trait ReadMethodTrait
         $client = static::getClient();
         $response = $client->get($path, $params, $headers);
         $responseData = $response->bodyArray;
-        $pagination = isset($responseData['pagination']) ? $responseData['pagination'] : [];
+        $pagination = $responseData['pagination'] ?? [];
         $items = [];
 
         if (isset($responseData['data'])) {
-            $items = array_map(
-                function ($item) {
+            $items = \array_map(
+                static function ($item) {
                     return Util::convertToApiObject($item);
                 },
                 $responseData['data']
@@ -61,30 +62,29 @@ trait ReadMethodTrait
         $path = static::getResourcePath();
         $client = static::getClient();
 
-        $loadPage = function ($params, &$list) use (&$loadPage, $client, $path, $headers) {
-
+        $loadPage = static function ($params, &$list) use (&$loadPage, $client, $path, $headers) {
             $response = $client->get($path, $params, $headers);
             $responseData = $response->bodyArray;
-            $items = array_map(
-                function ($item) {
+            $items = \array_map(
+                static function ($item) {
                     return Util::convertToApiObject($item);
                 },
                 $responseData['data']
             );
 
             $pagination = $responseData['pagination'];
-            $shown = $pagination['yielded'] ? : 0;
-            $limit = $pagination['limit'] ? : 0;
-            $cursorRange = $pagination['cursor_range'] ? : [];
+            $shown = $pagination['yielded'] ?: 0;
+            $limit = $pagination['limit'] ?: 0;
+            $cursorRange = $pagination['cursor_range'] ?: [];
 
-            $list = array_merge($list, $items);
+            $list = \array_merge($list, $items);
 
             if ($shown < $limit) {
                 return;
             }
 
-            if (is_array($cursorRange) && count($cursorRange)) {
-                $params['starting_after'] = end($cursorRange);
+            if (\is_array($cursorRange) && \count($cursorRange)) {
+                $params['starting_after'] = \end($cursorRange);
             } else {
                 return;
             }

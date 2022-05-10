@@ -1,4 +1,5 @@
 <?php
+
 namespace CoinbaseCommerce\Tests\Resources;
 
 use CoinbaseCommerce\ApiResourceList;
@@ -7,7 +8,7 @@ use CoinbaseCommerce\Tests\BaseTest;
 
 class ChargeTest extends BaseTest
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
         Charge::setClient($this->apiClient);
@@ -18,7 +19,7 @@ class ChargeTest extends BaseTest
         $this->appendRequest(200, $this->parseJsonFile('charge.json'));
         $data = [
             'name' => 'My test name',
-            'description' => 'Mastering the Transition to the Information Age'
+            'description' => 'Mastering the Transition to the Information Age',
         ];
         $chargeObj = new Charge($data);
         $chargeObj->insert();
@@ -33,7 +34,7 @@ class ChargeTest extends BaseTest
         $chargeObj = new Charge(
             [
                 'name' => 'My test name',
-                'description' => 'Mastering the Transition to the Information Age'
+                'description' => 'Mastering the Transition to the Information Age',
             ]
         );
         $chargeObj->save();
@@ -54,7 +55,7 @@ class ChargeTest extends BaseTest
             [
                 'id' => '488fcbd5-eb82-42dc-8a2b-10fdf70e0bfe',
                 'name' => 'My test name',
-                'description' => 'Mastering the Transition to the Information Age'
+                'description' => 'Mastering the Transition to the Information Age',
             ]
         );
         $chargeObj->save();
@@ -66,7 +67,7 @@ class ChargeTest extends BaseTest
         $chargeObj = Charge::create(
             [
                 'name' => 'My test name',
-                'description' => 'Mastering the Transition to the Information Age'
+                'description' => 'Mastering the Transition to the Information Age',
             ]
         );
 
@@ -132,7 +133,7 @@ class ChargeTest extends BaseTest
         $this->appendRequest(200, $this->parseJsonFile('charge.json'));
         $chargeObj->resolve();
 
-        $this->assertRequested('POST', "/charges/$id/resolve", '');
+        $this->assertRequested('POST', "/charges/{$id}/resolve", '');
         $this->assertEquals($id, $chargeObj->id);
     }
 
@@ -146,7 +147,7 @@ class ChargeTest extends BaseTest
         $this->appendRequest(200, $this->parseJsonFile('charge.json'));
         $chargeObj->cancel();
 
-        $this->assertRequested('POST', "/charges/$id/cancel", '');
+        $this->assertRequested('POST', "/charges/{$id}/cancel", '');
         $this->assertEquals($id, $chargeObj->id);
     }
 }

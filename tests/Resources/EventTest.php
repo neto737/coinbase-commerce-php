@@ -1,4 +1,5 @@
 <?php
+
 namespace CoinbaseCommerce\Tests\Resources;
 
 use CoinbaseCommerce\ApiResourceList;
@@ -8,7 +9,7 @@ use CoinbaseCommerce\Tests\BaseTest;
 
 class EventTest extends BaseTest
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
         Event::setClient($this->apiClient);
@@ -43,7 +44,7 @@ class EventTest extends BaseTest
         $this->appendRequest(200, $eventResponse);
         $this->logger->expects($this->once())
             ->method('warning')
-            ->with(implode(',', $eventResponse['warnings']));
+            ->with(\implode(',', $eventResponse['warnings']));
         $eventList = Event::getList(['limit' => 2, 'order' => 'asc']);
 
         $this->assertRequested('GET', '/events', 'limit=2&order=asc');

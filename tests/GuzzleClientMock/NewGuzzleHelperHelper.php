@@ -1,11 +1,12 @@
 <?php
+
 namespace CoinbaseCommerce\Tests\GuzzleClientMock;
 
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use GuzzleHttp\Psr7\Response;
 
 class NewGuzzleHelperHelper extends GuzzleHelperAbstract
 {
@@ -27,17 +28,17 @@ class NewGuzzleHelperHelper extends GuzzleHelperAbstract
 
     public function shiftTransactionRequest()
     {
-        $request = array_shift($this->container)['request'];
+        $request = \array_shift($this->container)['request'];
 
         return [
             'params' => $request->getUri()->getQuery(),
             'method' => $request->getMethod(),
-            'path' => $request->getUri()->getPath()
+            'path' => $request->getUri()->getPath(),
         ];
     }
 
     public function appendRequest($statusCode, $body, $headers = [])
     {
-        $this->mock->append(new Response($statusCode, $headers, json_encode($body)));
+        $this->mock->append(new Response($statusCode, $headers, \json_encode($body)));
     }
 }

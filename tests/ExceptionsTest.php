@@ -3,12 +3,12 @@
 namespace CoinbaseCommerce\Tests;
 
 use CoinbaseCommerce\Exceptions\ApiException;
-use CoinbaseCommerce\Exceptions\InvalidRequestException;
 use CoinbaseCommerce\Exceptions\AuthenticationException;
-use CoinbaseCommerce\Exceptions\ParamRequiredException;
-use CoinbaseCommerce\Exceptions\ResourceNotFoundException;
-use CoinbaseCommerce\Exceptions\RateLimitExceededException;
 use CoinbaseCommerce\Exceptions\InternalServerException;
+use CoinbaseCommerce\Exceptions\InvalidRequestException;
+use CoinbaseCommerce\Exceptions\ParamRequiredException;
+use CoinbaseCommerce\Exceptions\RateLimitExceededException;
+use CoinbaseCommerce\Exceptions\ResourceNotFoundException;
 use CoinbaseCommerce\Exceptions\ServiceUnavailableException;
 use CoinbaseCommerce\Exceptions\ValidationException;
 use CoinbaseCommerce\Resources\Charge;
@@ -27,11 +27,11 @@ class ExceptionsTest extends BaseTest
                         'body' => [
                             'error' => [
                                 'type' => 'invalid_request',
-                                'message' => 'Pricing type is not included in the list'
-                            ]
-                        ]
+                                'message' => 'Pricing type is not included in the list',
+                            ],
+                        ],
                     ],
-                    'exceptionClass' => InvalidRequestException::getClassName()
+                    'exceptionClass' => InvalidRequestException::getClassName(),
                 ],
                 [
                     'response' => [
@@ -39,11 +39,11 @@ class ExceptionsTest extends BaseTest
                         'body' => [
                             'error' => [
                                 'type' => 'authorization_error',
-                                'message' => 'You are not authorized to do that.'
-                            ]
-                        ]
+                                'message' => 'You are not authorized to do that.',
+                            ],
+                        ],
                     ],
-                    'exceptionClass' => AuthenticationException::getClassName()
+                    'exceptionClass' => AuthenticationException::getClassName(),
                 ],
                 [
                     'response' => [
@@ -51,11 +51,11 @@ class ExceptionsTest extends BaseTest
                         'body' => [
                             'error' => [
                                 'type' => 'not_found',
-                                'message' => 'Not foun'
-                            ]
-                        ]
+                                'message' => 'Not foun',
+                            ],
+                        ],
                     ],
-                    'exceptionClass' => ResourceNotFoundException::getClassName()
+                    'exceptionClass' => ResourceNotFoundException::getClassName(),
                 ],
                 [
                     'response' => [
@@ -63,11 +63,11 @@ class ExceptionsTest extends BaseTest
                         'body' => [
                             'error' => [
                                 'type' => 'rate_limit_exceeded',
-                                'message' => 'Rate limit exceeded'
-                            ]
-                        ]
+                                'message' => 'Rate limit exceeded',
+                            ],
+                        ],
                     ],
-                    'exceptionClass' => RateLimitExceededException::getClassName()
+                    'exceptionClass' => RateLimitExceededException::getClassName(),
                 ],
                 [
                     'response' => [
@@ -75,18 +75,18 @@ class ExceptionsTest extends BaseTest
                         'body' => [
                             'error' => [
                                 'type' => 'internal_server_error',
-                                'message' => 'Internal server error'
-                            ]
-                        ]
+                                'message' => 'Internal server error',
+                            ],
+                        ],
                     ],
-                    'exceptionClass' => InternalServerException::getClassName()
+                    'exceptionClass' => InternalServerException::getClassName(),
                 ],
                 [
                     'response' => [
                         'statusCode' => 503,
-                        'body' => ''
+                        'body' => '',
                     ],
-                    'exceptionClass' => ServiceUnavailableException::getClassName()
+                    'exceptionClass' => ServiceUnavailableException::getClassName(),
                 ],
                 [
                     'response' => [
@@ -94,11 +94,11 @@ class ExceptionsTest extends BaseTest
                         'body' => [
                             'error' => [
                                 'type' => 'internal_server_error',
-                                'message' => 'Internal server error'
-                            ]
-                        ]
+                                'message' => 'Internal server error',
+                            ],
+                        ],
                     ],
-                    'exceptionClass' => InternalServerException::getClassName()
+                    'exceptionClass' => InternalServerException::getClassName(),
                 ],
                 [
                     'response' => [
@@ -106,11 +106,11 @@ class ExceptionsTest extends BaseTest
                         'body' => [
                             'error' => [
                                 'type' => 'validation_error',
-                                'message' => 'Validation error'
-                            ]
-                        ]
+                                'message' => 'Validation error',
+                            ],
+                        ],
                     ],
-                    'exceptionClass' => ValidationException::getClassName()
+                    'exceptionClass' => ValidationException::getClassName(),
                 ],
                 [
                     'response' => [
@@ -118,19 +118,19 @@ class ExceptionsTest extends BaseTest
                         'body' => [
                             'error' => [
                                 'type' => 'param_required',
-                                'message' => 'Validation error'
-                            ]
-                        ]
+                                'message' => 'Validation error',
+                            ],
+                        ],
                     ],
-                    'exceptionClass' => ParamRequiredException::getClassName()
+                    'exceptionClass' => ParamRequiredException::getClassName(),
                 ],
                 [
                     'response' => [
                         'statusCode' => 502,
-                        'body' => ''
+                        'body' => '',
                     ],
-                    'exceptionClass' => ApiException::getClassName()
-                ]
+                    'exceptionClass' => ApiException::getClassName(),
+                ],
             ];
         }
 
@@ -148,7 +148,7 @@ class ExceptionsTest extends BaseTest
                 Charge::create(
                     [
                         'name' => 'Test Name',
-                        'description' => 'Test Description'
+                        'description' => 'Test Description',
                     ]
                 );
             } catch (\Exception $exception) {

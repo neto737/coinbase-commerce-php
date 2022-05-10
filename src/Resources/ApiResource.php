@@ -1,4 +1,5 @@
 <?php
+
 namespace CoinbaseCommerce\Resources;
 
 use ArrayIterator;
@@ -25,12 +26,12 @@ class ApiResource extends \ArrayObject
         $this->clearAttributes();
 
         if ($data instanceof ApiResponse) {
-            $data = isset($data->bodyArray['data']) ? $data->bodyArray['data'] : null;
+            $data = $data->bodyArray['data'] ?? null;
         }
 
         foreach ($data as $key => $value) {
             $value = Util::convertToApiObject($value);
-            $this->attributes[$key] = is_array($value) ? new \ArrayObject($value) : $value;
+            $this->attributes[$key] = \is_array($value) ? new \ArrayObject($value) : $value;
             $this->initialData[$key] = $value;
         }
     }
@@ -48,7 +49,7 @@ class ApiResource extends \ArrayObject
 
     public static function getClassName()
     {
-        return get_called_class();
+        return static::class;
     }
 
     public function getPrimaryKeyValue()
@@ -59,7 +60,7 @@ class ApiResource extends \ArrayObject
     public function __set($key, $value)
     {
         if (\is_string($key)) {
-            $this->attributes[$key] = is_array($value) ? new \ArrayObject($value) : $value;
+            $this->attributes[$key] = \is_array($value) ? new \ArrayObject($value) : $value;
         }
     }
 
@@ -120,7 +121,7 @@ class ApiResource extends \ArrayObject
 
     public function __toString()
     {
-        return print_r($this->attributes, true);
+        return \print_r($this->attributes, true);
     }
 
     public static function setClient($client)
@@ -142,32 +143,32 @@ class ApiResource extends \ArrayObject
         return $this->__get($key);
     }
 
-    public function offsetSet($key, $value) : void
+    public function offsetSet($key, $value): void
     {
-        null === $key ? array_push($this->attributes, $value) : $this->attributes[$key] = $value;
+        null === $key ? \array_push($this->attributes, $value) : $this->attributes[$key] = $value;
     }
 
-    public function count() : int
+    public function count(): int
     {
-        return count($this->attributes);
+        return \count($this->attributes);
     }
 
-    public function asort(int $flags = SORT_REGULAR) : bool
+    public function asort(int $flags = \SORT_REGULAR): bool
     {
-        return asort($this->attributes, $flags);
+        return \asort($this->attributes, $flags);
     }
 
-    public function ksort(int $flags = SORT_REGULAR) : bool
+    public function ksort(int $flags = \SORT_REGULAR): bool
     {
-        return ksort($this->attributes, $flags);
+        return \ksort($this->attributes, $flags);
     }
 
-    public function offsetUnset($key) : void
+    public function offsetUnset($key): void
     {
         unset($this->attributes[$key]);
     }
 
-    public function getIterator() : ArrayIterator
+    public function getIterator(): ArrayIterator
     {
         return new \ArrayIterator($this->attributes);
     }

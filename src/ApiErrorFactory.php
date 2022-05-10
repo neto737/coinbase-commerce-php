@@ -1,6 +1,8 @@
 <?php
+
 namespace CoinbaseCommerce;
 
+use CoinbaseCommerce\Exceptions\ApiException;
 use CoinbaseCommerce\Exceptions\AuthenticationException;
 use CoinbaseCommerce\Exceptions\InternalServerException;
 use CoinbaseCommerce\Exceptions\InvalidRequestException;
@@ -9,7 +11,6 @@ use CoinbaseCommerce\Exceptions\RateLimitExceededException;
 use CoinbaseCommerce\Exceptions\ResourceNotFoundException;
 use CoinbaseCommerce\Exceptions\ServiceUnavailableException;
 use CoinbaseCommerce\Exceptions\ValidationException;
-use CoinbaseCommerce\Exceptions\ApiException;
 use GuzzleHttp\Exception\RequestException;
 
 class ApiErrorFactory
@@ -38,11 +39,11 @@ class ApiErrorFactory
                 'invalid_request' => InvalidRequestException::getClassName(),
                 'authentication_error' => AuthenticationException::getClassName(),
                 'rate_limit_exceeded' => RateLimitExceededException::getClassName(),
-                'internal_server_error' => InternalServerException::getClassName()
+                'internal_server_error' => InternalServerException::getClassName(),
             ];
         }
 
-        return isset(self::$mapErrorMessageToClass[$message]) ? self::$mapErrorMessageToClass[$message]: null;
+        return self::$mapErrorMessageToClass[$message] ?? null;
     }
 
     /**
@@ -58,11 +59,11 @@ class ApiErrorFactory
                 404 => ResourceNotFoundException::getClassName(),
                 429 => RateLimitExceededException::getClassName(),
                 500 => InternalServerException::getClassName(),
-                503 => ServiceUnavailableException::getClassName()
+                503 => ServiceUnavailableException::getClassName(),
             ];
         }
 
-        return isset(self::$mapErrorCodeToClass[$code]) ? self::$mapErrorCodeToClass[$code]: null;
+        return self::$mapErrorCodeToClass[$code] ?? null;
     }
 
     /**
@@ -73,9 +74,9 @@ class ApiErrorFactory
         $response = $exception->getResponse();
         $request = $exception->getRequest();
         $code = $exception->getCode();
-        $data = $response ? json_decode($response->getBody(), true) : null;
-        $errorMessage = isset($data['error']['message']) ? $data['error']['message'] : $exception->getMessage();
-        $errorId = isset($data['error']['type']) ? $data['error']['type'] : null;
+        $data = $response ? \json_decode($response->getBody(), true) : null;
+        $errorMessage = $data['error']['message'] ?? $exception->getMessage();
+        $errorId = $data['error']['type'] ?? null;
 
         $errorClass = self::getErrorClassByMessage($errorId) ?: self::getErrorClassByCode($code) ?: ApiException::getClassName();
 

@@ -1,8 +1,9 @@
 <?php
+
 namespace CoinbaseCommerce\Tests;
 
-use PHPUnit\Framework\TestCase;
 use CoinbaseCommerce\Util;
+use PHPUnit\Framework\TestCase;
 
 class UtilTest extends TestCase
 {
@@ -18,24 +19,24 @@ class UtilTest extends TestCase
         $this->assertTrue(
             Util::equal(
                 [
-                   'prop1' => [
-                       'value1'
-                   ],
-                   'prop2' => [
-                       'propinheritlevel1' => [
-                           'propinheritlevel2' => 'valueinheritlevel2'
-                       ]
-                   ]
-                ],
-                [
                     'prop1' => [
-                        'value1'
+                        'value1',
                     ],
                     'prop2' => [
                         'propinheritlevel1' => [
-                            'propinheritlevel2' => 'valueinheritlevel2'
-                        ]
-                    ]
+                            'propinheritlevel2' => 'valueinheritlevel2',
+                        ],
+                    ],
+                ],
+                [
+                    'prop1' => [
+                        'value1',
+                    ],
+                    'prop2' => [
+                        'propinheritlevel1' => [
+                            'propinheritlevel2' => 'valueinheritlevel2',
+                        ],
+                    ],
                 ]
             )
         );
@@ -43,23 +44,23 @@ class UtilTest extends TestCase
             Util::equal(
                 [
                     'prop1' => [
-                        'value1'
+                        'value1',
                     ],
                     'prop2' => [
                         'propinheritlevel1' => [
-                            'propinheritlevel2' => 'valueinheritlevel2'
-                        ]
-                    ]
+                            'propinheritlevel2' => 'valueinheritlevel2',
+                        ],
+                    ],
                 ],
                 [
                     'prop1' => [
-                        'value1'
+                        'value1',
                     ],
                     'prop2' => [
                         'propinheritlevel1' => [
-                            'propinheritlevel2' => 'anothervalueinheritlevel2'
-                        ]
-                    ]
+                            'propinheritlevel2' => 'anothervalueinheritlevel2',
+                        ],
+                    ],
                 ]
             )
         );
@@ -67,23 +68,23 @@ class UtilTest extends TestCase
             Util::equal(
                 [
                     'prop1' => [
-                        'value1'
+                        'value1',
                     ],
                     'prop2' => [
                         'propinheritlevel1' => [
-                            'propinheritlevel2' => 'valueinheritlevel2'
-                        ]
-                    ]
+                            'propinheritlevel2' => 'valueinheritlevel2',
+                        ],
+                    ],
                 ],
                 [
                     'prop1' => [
-                        'value1'
+                        'value1',
                     ],
                     'prop2' => [
                         'propinheritlevel1' => [
-                            'anotherpropinheritlevel2' => 'valueinheritlevel2'
-                        ]
-                    ]
+                            'anotherpropinheritlevel2' => 'valueinheritlevel2',
+                        ],
+                    ],
                 ]
             )
         );

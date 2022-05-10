@@ -1,4 +1,5 @@
 <?php
+
 namespace CoinbaseCommerce\Tests;
 
 use CoinbaseCommerce\ApiClient;
@@ -6,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class ApiClientTest extends TestCase
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
     }
