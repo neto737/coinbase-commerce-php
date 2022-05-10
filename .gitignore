@@ -9,3 +9,4 @@ composer.phar
 composer.lock
 Dockerfile*
 .dockerignore
+.php-cs-fixer.cache
