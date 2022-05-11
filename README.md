@@ -1,8 +1,8 @@
-[![CircleCI](https://circleci.com/gh/coinbase/coinbase-commerce-php/tree/master.svg?style=svg)](https://circleci.com/gh/coinbase/coinbase-commerce-php/tree/master)
 # Coinbase Commerce
-**Note: This repository is not actively maintained.**
+Fork of the official PHP library for the [Coinbase Commerce API](https://commerce.coinbase.com/docs/).  
+**Note: The official repository is not actively maintained.**  
 
-The official PHP library for the [Coinbase Commerce API](https://commerce.coinbase.com/docs/).
+If the official repository gets updated, this fork will be deleted or updated accordingly. You'll notice when updating packages using ``composer`` results in an error. In this case, the official repository has probably been updated and this fork has been removed.  
 
 # Table of contents
 
@@ -20,7 +20,7 @@ The official PHP library for the [Coinbase Commerce API](https://commerce.coinba
 <!--te-->
 
 ## PHP versions
-PHP  version 5.4 and above are supported.
+PHP version 7.4 and above are supported.
 
 ## Documentation
 For more details visit [Coinbase API docs](https://commerce.coinbase.com/docs/api/).
