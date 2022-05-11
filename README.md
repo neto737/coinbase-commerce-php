@@ -66,10 +66,40 @@ All errors that occur during any interaction with the API will be raised as exce
 
 ## Installation
 
-Install with ``composer``:
+If you already have a `composer.json` file in your project, you can skip **Step 3** by pre-editing the `composer.json` file **(Step 2)** and then finish with **Step 1**.
+
+### Step 1: Install the official package with ``composer``
 ``` sh
 composer require coinbase/coinbase-commerce
 ```
+
+### Step 2: Add this fork to the version control system (VCS)
+
+The `composer.json` file should require the package like this:
+``` json
+"require": {
+    "coinbase/coinbase-commerce": "^1.0"
+}
+```
+
+Edit `composer.json` to require the package like this instead:
+``` json
+"require": {
+    "coinbase/coinbase-commerce": "dev-master"
+},
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "git@github.com:IceQ1337-Forks/coinbase-commerce-php"
+    }
+]
+```
+
+### Step 3: Update the source files with ``composer``
+``` sh
+composer update coinbase/coinbase-commerce
+```
+
 ## Usage
 ``` php
 use CoinbaseCommerce\ApiClient;
