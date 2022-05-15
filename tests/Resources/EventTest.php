@@ -40,11 +40,7 @@ class EventTest extends BaseTest
 
     public function testListMethod()
     {
-        $eventResponse = $this->parseJsonFile('eventList.json');
-        $this->appendRequest(200, $eventResponse);
-        $this->logger->expects($this->once())
-            ->method('warning')
-            ->with(\implode(',', $eventResponse['warnings']));
+        $this->appendRequest(200, $this->parseJsonFile('eventList.json'));
         $eventList = Event::getList(['limit' => 2, 'order' => 'asc']);
 
         $this->assertRequested('GET', '/events', 'limit=2&order=asc');
