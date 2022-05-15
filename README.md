@@ -426,8 +426,6 @@ try {
 ```
 
 ### Testing and Contributing
-**Note: The test suite is extremely outdated and will not work! It requires a complete overhaul. However, this is currently not worth doing.**  
-
 Any and all contributions are welcome! The process is simple: fork this repo, make your changes, run the test suite, and submit a pull request. To run the tests, clone the repository and run the following commands:
 
 ``` sh
