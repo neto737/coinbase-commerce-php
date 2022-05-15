@@ -39,9 +39,10 @@ class BaseTest extends TestCase
             ->method('getHttpClient')
             ->willReturn($client);
 
+        // https://github.com/sebastianbergmann/phpunit/issues/4852
         $this->logger = $this->getMockBuilder('LoggerClass')
-            ->onlyMethods(['warning'])
-            ->getMock('LoggerClass');
+            ->setMethods(['warning'])
+            ->getMock();
 
         $this->logger
             ->method('warning')
