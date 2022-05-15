@@ -12,12 +12,9 @@ class ApiClientTest extends TestCase
         parent::setUp();
     }
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Please init client first.
-     */
     public function testFailOnGetInstanceWithoutInit()
     {
+        $this->expectException(\Exception::class);
         ApiClient::getInstance();
     }
 

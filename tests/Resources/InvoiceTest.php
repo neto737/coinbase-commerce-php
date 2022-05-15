@@ -46,12 +46,10 @@ class InvoiceTest extends BaseTest
         $this->assertEquals('BV9KGDVA', $invoiceObj->code);
     }
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Update is not allowed
-     */
     public function testSaveMethodWithId()
     {
+        $this->expectException(\Exception::class);
+        
         $this->appendRequest(200, $this->parseJsonFile('invoice.json'));
         $invoiceObj = new Invoice(
             [
