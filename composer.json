@@ -31,9 +31,10 @@
     "friendsofphp/php-cs-fixer": "^3.8"
   },
   "scripts": {
-    "lint": "./vendor/bin/php-cs-fixer fix",
-    "test": "./vendor/bin/phpunit --verbose",
-    "coverage": "./vendor/bin/phpunit --coverage-text"
+    "lint": "./vendor/bin/php-cs-fixer fix --verbose",
+    "fix": "./vendor/bin/php-cs-fixer fix",
+    "test": "./vendor/bin/phpunit tests --verbose",
+    "coverage": "./vendor/bin/phpunit tests --coverage-text"
   },
   "archive": {
     "exclude": [
