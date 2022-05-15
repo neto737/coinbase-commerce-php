@@ -48,8 +48,8 @@ class BaseTest extends TestCase
             ->method('warning')
             ->willReturnArgument(0);
 
-        $this->apiClient->init('test_key');
-        $this->apiClient->setLogger($this->logger);
+        $this->apiClient->method('init')->with('test_key');
+        $this->apiClient->method('setLogger')->with($this->logger);
     }
 
     /**
