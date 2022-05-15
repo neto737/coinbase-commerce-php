@@ -49,7 +49,7 @@ class InvoiceTest extends BaseTest
     public function testSaveMethodWithId()
     {
         $this->expectException(\Exception::class);
-        
+
         $this->appendRequest(200, $this->parseJsonFile('invoice.json'));
         $invoiceObj = new Invoice(
             [
@@ -149,7 +149,7 @@ class InvoiceTest extends BaseTest
         $this->appendRequest(200, $this->parseJsonFile('invoice.json'));
         $invoiceObj->void();
 
-        $this->assertRequested('POST', "/invoices/{$id}/void", '');
+        $this->assertRequested('PUT', "/invoices/{$id}/void", '');
         $this->assertEquals($id, $invoiceObj->id);
     }
 }
