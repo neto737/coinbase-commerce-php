@@ -91,7 +91,7 @@ Edit `composer.json` to require the package like this instead:
 "repositories": [
     {
         "type": "vcs",
-        "url": "git@github.com:IceQ1337-Forks/coinbase-commerce-php"
+        "url": "git@github.com:IceQ1337/coinbase-commerce-php"
     }
 ]
 ```
