@@ -157,12 +157,12 @@ class ApiResourceList extends \ArrayObject
         }
     }
 
-    public function offsetGet($key)
+    public function offsetGet(mixed $key)
     {
         return $this->items[$key];
     }
 
-    public function offsetSet($key, $value): void
+    public function offsetSet(mixed $key, mixed $value): void
     {
         null === $key ? \array_push($this->items, $value) : $this->items[$key] = $value;
     }
@@ -189,7 +189,7 @@ class ApiResourceList extends \ArrayObject
         return \ksort($this->items, $flags);
     }
 
-    public function offsetUnset($key): void
+    public function offsetUnset(mixed $key): void
     {
         unset($this->items[$key]);
     }

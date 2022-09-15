@@ -138,12 +138,12 @@ class ApiResource extends \ArrayObject
         return ApiClient::getInstance();
     }
 
-    public function offsetGet($key)
+    public function offsetGet(mixed $key)
     {
         return $this->__get($key);
     }
 
-    public function offsetSet($key, $value): void
+    public function offsetSet(mixed $key, mixed $value): void
     {
         null === $key ? \array_push($this->attributes, $value) : $this->attributes[$key] = $value;
     }
@@ -163,7 +163,7 @@ class ApiResource extends \ArrayObject
         return \ksort($this->attributes, $flags);
     }
 
-    public function offsetUnset($key): void
+    public function offsetUnset(mixed $key): void
     {
         unset($this->attributes[$key]);
     }
