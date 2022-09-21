@@ -37,7 +37,7 @@ class ApiResponse
 
     /**
      * ApiResponse constructor.
-     * @param GuzzleHttp\Psr7\Response $response
+     * @param \GuzzleHttp\Psr7\Response $response
      */
     public function __construct($response)
     {
