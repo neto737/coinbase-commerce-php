@@ -262,6 +262,19 @@ class ApiClient
         }
     }
 
+    /**
+     * setHttpClient
+     *
+     * @param  \GuzzleHttp\Client $client
+     * @return void
+     */
+    public function setHttpClient(Client $client)
+    {
+        if (!isset($this->httpClient)) {
+            $this->httpClient = $client;
+        }
+    }
+
     public function getHttpClient()
     {
         if (!isset($this->httpClient)) {
