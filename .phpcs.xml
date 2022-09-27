@@ -1,19 +1,11 @@
 <?xml version="1.0"?>
 <ruleset>
-	<file>src/</file>
-	<file>tests/</file>
+    <file>.</file>
 
-	<exclude-pattern>*/Standards/*/Tests/*\.(inc|css|js)</exclude-pattern>
+    <arg name="extensions" value="php" />
+    <arg value="np"/>
 
-	<arg name="basepath" value="."/>
-	<arg name="extensions" value="php" />
-	<arg value="np"/>
-
-	<rule ref="PSR12">
-		<!-- https://github.com/squizlabs/PHP_CodeSniffer/issues/3200 -->
-		<exclude name="PSR12.Classes.AnonClassDeclaration.SpaceAfterKeyword"/>
-		
-		<!-- May want to use comments between the closing brace of an `if` and the `else`. -->
-		<exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
-	</rule>
+    <rule ref="PSR12">
+        <exclude name="Generic.Files.LineEndings"/>
+    </rule>
 </ruleset>
