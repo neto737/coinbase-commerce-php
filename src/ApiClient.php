@@ -265,7 +265,7 @@ class ApiClient
     /**
      * setHttpClient
      *
-     * @param  \GuzzleHttp\Client $client
+     * @param  Client $client
      * @return void
      */
     public function setHttpClient(Client $client)

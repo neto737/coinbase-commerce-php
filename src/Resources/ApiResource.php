@@ -2,7 +2,6 @@
 
 namespace CoinbaseCommerce\Resources;
 
-use ArrayIterator;
 use CoinbaseCommerce\ApiClient;
 use CoinbaseCommerce\ApiResponse;
 use CoinbaseCommerce\Util;
@@ -168,7 +167,7 @@ class ApiResource extends \ArrayObject
         unset($this->attributes[$key]);
     }
 
-    public function getIterator(): ArrayIterator
+    public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->attributes);
     }

@@ -2,8 +2,6 @@
 
 namespace CoinbaseCommerce;
 
-use ArrayIterator;
-
 class ApiResourceList extends \ArrayObject
 {
     private const CURSOR_PARAM = 'cursor_range';
@@ -194,7 +192,7 @@ class ApiResourceList extends \ArrayObject
         unset($this->items[$key]);
     }
 
-    public function getIterator(): ArrayIterator
+    public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->items);
     }
