@@ -15,7 +15,7 @@ jobs:
     - name: Setup PHP with tools
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.0'
+        php-version: '8.3'
         extensions: hash, json, pcre
         tools: cs2pr, phpcs, php-cs-fixer
     - name: phpcs
